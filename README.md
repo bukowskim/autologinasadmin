@@ -21,7 +21,6 @@ Scripts for envrionment where user has non-administrator account with ability to
     ```powershell
     Set-AdminShortcut 'C:\Windows\System32\Taskmgr.exe' 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\System Tools\Task Manager.lnk'
 
-
     Set-AdminShortcut 'C:\Program Files (
     x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe' 'PATH-TO-USER\Desktop\Visual Studio 2017.lnk' 'Start-VisualStudio'
     ```

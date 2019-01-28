@@ -24,7 +24,8 @@ function Start-WithAdmin {
 	
 	if(!(Test-IslocalAdministrator)){
 		$credentials = Import-CliXml -Path (Join-Path $env:userprofile "credentials.xml")
-		Start-Process -PassThru powershell -Windowstyle hidden -Credential $credentials -ArgumentList '-noprofile -command &{Start-Process -FilePath ''',  $filePath, ''' -verb runas}' | Out-Null
+		$command = "Start-Process -FilePath '$filePath' -verb runas";
+		Start-Process -PassThru powershell -WindowStyle Hidden -WorkingDirectory $env:userprofile -Credential ($credentials) -ArgumentList "-noprofile -command ""$command""" | Out-Null
 	}
 	else{
 		Start-Process -FilePath $filePath
@@ -35,11 +36,18 @@ function Start-VisualStudio {
 	Start-WithAdmin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe"
 }
 
+function Start-Notepad {
+	Start-WithAdmin -FilePath "C:\Program Files\Notepad++\notepad++.exe"
+}
+function Start-Powershell {
+	Start-WithAdmin -FilePath "powershell"
+}
+
 function Set-AdminShortcut {
 	param ( 
 		[Parameter(Mandatory=$true)][string]$sourceExe, 
 		[Parameter(Mandatory=$true)][string]$destShortcut,
-		[Parameter(Mandatory=$false)][string]$command = "Start-WithAdmin '"+ $sourceExe + "'"
+		[Parameter(Mandatory=$false)][string]$command = "Start-WithAdmin '"+ $sourceExe + "';pause"
 	)
 	
 	$WshShell = New-Object -comObject WScript.Shell
