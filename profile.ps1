@@ -36,11 +36,8 @@ function Start-VisualStudio {
 	Start-WithAdmin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe"
 }
 
-function Start-Notepad {
-	Start-WithAdmin -FilePath "C:\Program Files\Notepad++\notepad++.exe"
-}
 function Start-Powershell {
-	Start-WithAdmin -FilePath "powershell"
+	Start-WithAdmin "powershell"
 }
 
 function Set-AdminShortcut {
