@@ -44,7 +44,7 @@ function Set-AdminShortcut {
 	param ( 
 		[Parameter(Mandatory=$true)][string]$sourceExe, 
 		[Parameter(Mandatory=$true)][string]$destShortcut,
-		[Parameter(Mandatory=$false)][string]$command = "Start-WithAdmin '"+ $sourceExe + "';pause"
+		[Parameter(Mandatory=$false)][string]$command = "Start-WithAdmin '"+ $sourceExe + "'"
 	)
 	
 	$WshShell = New-Object -comObject WScript.Shell
